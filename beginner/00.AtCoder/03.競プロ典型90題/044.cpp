@@ -19,11 +19,18 @@ int main()
         int t, x, y;
         cin >> t >> x >> y;
         if (t == 1) {
-
-        } else if (t == 2) {
-            shift = (shift + n - 1) % n;
+            --x, --y;
+            swap(a[(x + shift) % n], a[(y + shift) % n]);
+        } 
+        if (t == 2) {
+            shift = (shift + n - 1) % n; // 右方向にシフトするのでshiftは左方向にシフトする.
+        }
+        if (t == 3) {
+            --x;
+            cout << a[(x+shift) % n] << endl;
         }
     }
+    return 0;
 
 }
 
