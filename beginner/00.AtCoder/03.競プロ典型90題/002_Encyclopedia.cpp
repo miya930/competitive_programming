@@ -16,25 +16,20 @@ int main()
     cin >> n;
 
     for (int bits = 0; bits < (1<<n); ++bits) {
-        string s = "";
-        bool flag = true;
-        int cnt_r = 0;
+        string ans = "";
         int cnt_l = 0;
+        int cnt_r = 0;
         for (int i = n-1; i >= 0; --i) {
-            if ((bits & (1<<i)) == 0) {
-                s += '(';
-                cnt_l++;
-            } else {
-                s += ')';
+            if (bits & (1<<i)) {
+                ans += ')';
                 cnt_r++;
+                if (cnt_l - cnt_r < 0) break;
             }
-            if (cnt_r > cnt_l) {
-                flag = false;
-                break;
+            else {
+                ans += '(';
+                cnt_l++;
             }
         }
-        if (flag == true && cnt_r == cnt_l) cout << s << endl;
-
+        if (cnt_l == cnt_r) cout << ans << endl;
     }
-
 }
