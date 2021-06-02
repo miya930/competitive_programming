@@ -1,28 +1,35 @@
 #include <iostream>
-#include <cmath>
-#include <cstdlib>
+#include <vector>
 using namespace std;
-const int MAX = 100010;
 
-int main(void)
+int main()
 {
-    int N;
-    cin >> N;
+    int n, m;
+    cin >> n >> m;
+    vector<int> k(m), p(m);
+    vector<vector<int> > S(10);
 
-    int t[MAX] = {0}, x[MAX] = {0}, y[MAX] = {0};
-    for (int i = 1; i <= N; i++) cin >> t[i] >> x[i] >> y[i];
-
-    for (int i = 1; i <= N; i++) {
-        int dt = t[i] - t[i-1];
-        int dxy = abs(x[i] - x[i-1]) + abs(y[i] - y[i-1]); 
-        if (((dt % 2) == (dxy % 2)) && (dt >= dxy)) {
-            continue;
-        } else {
-            cout << "No" << endl;
-            return 0;
+    for (int i = 0; i < m; ++i) {
+        int k; cin >> k;
+        for (int j = 0; j < k; ++j) {
+            int s; cin >> s; s--;
+            S[i].push_back(s);
         }
     }
 
-    cout << "Yes" << endl;
-    return 0;
+    for (int i = 0; i < m; ++i) cin >> p[i];
+
+    int ans = 0;
+    for (int bits = 0; bits < (1 << n); bits++) {
+        int ok = 0;
+        for (int i = 0; i < m; ++i) {
+            int cnt = 0;
+            for (auto a : S[i]) {
+                if (bits & (1 << a)) cnt++;
+            }
+            if (cnt % 2 == p[i]) ok++;
+        }
+        if (ok == m) ans++;
+    }
+    cout << ans << endl;
 }
