@@ -17,7 +17,7 @@ int dfs(int sx, int sy, int px, int py) { // sx, syFƒXƒ^[ƒg‚ÌÀ•WApx, pyFƒS
     for (int i = 0; i < 4; i++) {
         int nx = px + dx[i], ny = py + dy[i];
         if (nx < 1 || ny < 1 || nx > h || ny > w || c[nx][ny] == '#') continue;
-        if ((sx != nx || sy != ny) && used[nx][ny] == true) continue; // ƒXƒ^[ƒg’n“_‚É–ß‚éê‡‚Ì‚İœŠO‚·‚é‚½‚ßA((sx != nx) || (sy != ny)) && (used[nx][ny] == true) ‚ª‚Â‚­B
+        if ((sx != nx || sy != ny) && used[nx][ny] == true) continue; // ’TõÏ‚İ‚Ì’¸“_‚Ìê‡i‚½‚¾‚µƒXƒ^[ƒg’n“_‚Íœ‚­)
         int v = dfs(sx, sy, nx, ny);
         ret = max(ret, v + 1);
     }

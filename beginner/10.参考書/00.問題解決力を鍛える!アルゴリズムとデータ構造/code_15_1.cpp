@@ -1,16 +1,14 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
-typedef pair<int, pair<int, int> > Edge;
+struct UnionFind {
+    vector<int> siz, par;
 
-struct UnionFind{
-    vector<int> par, siz;
+    UnionFind(int n) : par(n, -1), siz(n, 1) {}
 
-    UnionFind(int n): par(n, -1), siz(n, 1) {}
-
-    root(int x) {
+    int root(int x) {
         if (par[x] == -1) return x;
         else return par[x] = root(par[x]);
     }
@@ -28,7 +26,7 @@ struct UnionFind{
 
         par[y] = x;
         siz[x] += siz[y];
-        return true; 
+        return true;
     }
 
     int size(int x) {
@@ -36,32 +34,37 @@ struct UnionFind{
     }
 };
 
+typedef pair<int, pair<int, int> > Edge; // 辺 e = (u, v) を {w(e), {u, v}} で表す。
+
 int main()
 {
     int n, m;
     cin >> n >> m;
+    vector<Edge> edges(m);
 
-    vector<Edge> edges(n);
     for (int i = 0; i < m; ++i) {
         int u, v, w;
         cin >> u >> v >> w;
+
         edges[i] = Edge(w, make_pair(u, v));
     }
 
     sort(edges.begin(), edges.end());
 
+    // クラスカル法
     long long res = 0;
     UnionFind uf(n);
 
-    for (int i = 0;i < m; ++i) {
-        int v = edges[i].second.first;
-        int u = edges[i].second.second;
+    for (int i = 0; i < n; ++i) {
         int w = edges[i].first;
+        int u = edges[i].second.first;
+        int v = edges[i].second.second;
 
-        if (uf.issame(v, u)) continue;
+        if (uf.issame(x, y)) continue;
 
-        uf.unite(u, v);
         res += w;
-    }
+        uf.unite(u, v);
+    } 
 
+    cout << res << endl;
 }
