@@ -16,12 +16,10 @@ int main()
     vector<vector<long long> > dp(n+2, vector<long long>(10, 0));
     dp[0][0] = 1;
 
-    for (int i = 0; i <= n; ++i) dp[i][0] = 1; 
-
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < 8; ++j) {
             if (s[i]==t[j]) dp[i+1][j+1] += dp[i][j];
-            if (s[i]!=t[j]) dp[i+1][j] += dp[i][j];
+            dp[i+1][j] += dp[i][j];
             dp[i+1][j+1] %= mod;
             dp[i+1][j] %= mod;
         }
