@@ -23,6 +23,5 @@ int main()
             if (j - w[i - 1] >= 0) chmax(dp[i][j], dp[i - 1][j - w[i - 1]] + v[i - 1]);
         }
     }
-    cout << dp[n][W] << endl;
-    return 0;
+    cout << dp[n][W];
 }
