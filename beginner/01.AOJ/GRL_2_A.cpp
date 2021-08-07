@@ -37,35 +37,36 @@ struct UnionFind {
     }
 };
 
+typedef pair<int, pair<int, int> > Edge;
+
 int main()
 {
     int n, m;
     cin >> n >> m;
 
-    vector<int> a(m), b(m);
-    for (int i = 0; i < m; ++i) {
-        cin >> a[i] >> b[i];
-        a[i]--; b[i]--;
-    }
-
-    vector<long long> ans;
+    vector<Edge> edges(m);
     UnionFind uf;
     uf.init(n);
 
-    long long pre = 1LL*n*(n-1)/2;
-    ans.push_back(pre);
-
-    for (int i = m-1; i > 0; --i) {
-        long long siz_a = uf.size(a[i]), siz_b = uf.size(b[i]);
-        if (uf.unite(a[i],b[i])) {
-            pre -=  siz_a*siz_b;
-            ans.push_back(pre);
-        } else {
-            ans.push_back(pre);
-        }
+    for (int i = 0; i < m; ++i) {
+        int s, t, w;
+        cin >> s >> t >> w;
+        edges[i] = Edge(w, make_pair(s, t));
     }
-    
-    reverse(ans.begin(), ans.end());
 
-    for (int i = 0; i < (int)ans.size(); ++i) cout << ans[i] << endl;
+    sort(edges.begin(), edges.end());
+
+    long long ans = 0;
+    for (int i = 0; i < m; ++i) {
+        int w = edges[i].first;
+        int u = edges[i].second.first;
+        int v = edges[i].second.second;
+
+        if (uf.issame(u, v)) continue;
+
+        ans += w;
+        uf.unite(u, v);
+    }
+
+    cout << ans << endl;
 }

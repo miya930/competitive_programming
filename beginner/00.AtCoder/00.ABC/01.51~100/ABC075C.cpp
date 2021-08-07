@@ -1,13 +1,17 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 struct UnionFind {
-    vector<int> siz, par;
+    vector<int> par, siz;
 
-    UnionFind(int n) : par(n, -1), siz(n, 1) { }
+    void init(int n) {
+        par.assign(n, -1);
+        siz.assign(n, 1);
+    }
 
-    int root (int x) {
+    int root(int x) {
         if (par[x] == -1) return x;
         else return par[x] = root(par[x]);
     }
@@ -18,13 +22,14 @@ struct UnionFind {
 
     bool unite(int x, int y) {
         x = root(x); y = root(y);
+
         if (x == y) return false;
 
         if (siz[x] < siz[y]) swap(x, y);
 
         par[y] = x;
         siz[x] += siz[y];
-        return true;
+        return y;
     }
 
     int size(int x) {
@@ -32,33 +37,35 @@ struct UnionFind {
     }
 };
 
-
 int main()
 {
     int n, m;
     cin >> n >> m;
 
     vector<int> a(m), b(m);
+
+    UnionFind uf;
+
     for (int i = 0; i < m; ++i) {
         cin >> a[i] >> b[i];
-        a[i]--;b[i]--;
+        a[i]--; b[i]--;
     }
 
     int ans = 0;
     for (int i = 0; i < m; ++i) {
-        UnionFind uf(n);
-        int cnt = 0;
+        uf.init(n);
+        int temp = 0;
         for (int j = 0; j < m; ++j) {
             if (j == i) continue;
             uf.unite(a[j], b[j]);
         }
-        for (int j = 0; j < n; ++j) {
-            if (uf.root(j) == j) cnt++;
-            if (cnt > 1) {
-                ans++;
-                break;
-            }
+
+        for (int i = 0; i < n; ++i) {
+            if (uf.par[i] == -1) temp++;
         }
+
+        if (temp > 1) ans++;
     }
+
     cout << ans << endl;
 }
