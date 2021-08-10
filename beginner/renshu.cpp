@@ -3,74 +3,60 @@
 #include <vector>
 #include <queue>
 using namespace std;
-typedef long long ll;
+typedef vector<int> Graph;
 
-const ll INF = 1LL << 60;
+vector<int> dist, ans;
+vector<int> dp;
+queue<int> que;
 
-struct Edge {
-    int to;
-    ll w;
-    Edge(int to, ll w) : to(to), w(w) {}
-};
+void bfs(const Graph &G, int x) {
+    dist[x] = 0;
+    que.push(v);
+    ans[x] = 0;
 
-priority_queue<pair<ll, int>, vector<pair<ll, int> >, greater<pair<ll, int> > > que;
-typedef vector<vector<Edge> > Graph;
-
-vector<ll> dist1, dist2;
-
-template<class T> bool chmin(T& a, T b) {
-    if (a > b) {
-        a = b;
-        return true;
-    }
-    return false;
-}
-
-void dijkstra(const Graph& G, int s) {
-    dist1[s] = 0;
-    que.push(make_pair(dist1[s], s));
-
-    while (!que.empty()) {
-        int v = que.top().second;
-        ll d = que.top().first;
+    while(!que.empty()) {
+        int v = que.front();
         que.pop();
-
-        if (d > dist2[v]) continue;
-
-        for (int i = 0; i < G[v].size(); ++i) {
-            Edge e = G[v][i];
-            ll d2 = d + e.w;
-            if (dist1[e.to] > d2) {
-                swap(dist1[e.to], d2);
-                que.push(make_pair(dist1[e.to], e.to));
-            }
-
-            if (dist1[e.to] < d2 && dist2[e.to] > d2) {
-                dist2[e.to] = d2;
-                que.push(make_pair(dist2[e.to], e.to));
-            }
+        for (auto nv : G[v]) {
+            if (dist[nv] != -1) continue;
+            dist[nv] = dist[v] + 1;
+            que.push(nv);
+            ans[nv] = v;
         }
+        
     }
-
 }
 
 int main()
 {
     int n, m;
     cin >> n >> m;
+    
+    dp.assign(n, 0);
+    dist.assign(n, -1);
+    ans.resize(n);
+    
     Graph G(n);
-    dist1.assign(n, INF);
-    dist2.assign(n, INF);
-
     for (int i = 0; i < m; ++i) {
-        int s, t, d;
-        cin >> s >> t >> d;
-        s--; t--;
-        G[s].push_back(Edge(t, d));
-        G[t].push_back(Edge(s, d));
+        int a, b;
+        cin >> a >> b;
+        a--; b--;
+        G[a].push_back(b);
+        G[b].push_back(a);
     }
 
-    dijkstra(G, 0);
+    for (int i = 0; i < n; ++i) {
+        if (dist[i] == -1) {
+            cout << "No" << endl;
+            return 0;
+        }
+    }
 
-    cout << dist2[n - 1] << endl;
+    cout << "Yes" << endl;
+
+    for (int i = 0; i < n; ++i) {
+        cout << ans[i] + 1 << endl;
+    }
+    return 0;
+
 }
