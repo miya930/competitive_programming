@@ -1,25 +1,25 @@
 #include <iostream>
-#include <string>
+#include <vector>
 #include <algorithm>
+#include <string>
 using namespace std;
 
-int main(void)
+int main()
 {
-    string S;
-    cin >> S;
+    string s;
+    cin >> s;
 
-    int cnt = 0;
     int ans = 0;
-
-    for (unsigned int i = 0; i < S.length();i++) {
-        if((S[i] == 'A') || (S[i] == 'C') || (S[i] == 'G') || (S[i] == 'T')) {
-            cnt++;
-            ans = max(ans, cnt);
+    int temp = 0;
+    for (int i = 0; i < (int)s.size(); ++i) {
+        if (s[i] == 'A' || s[i] == 'C' || s[i] == 'G' || s[i] == 'T') {
+            temp++;
         } else {
-            ans = max(ans, cnt);
-            cnt = 0;
+            ans = max(ans, temp);
+            temp = 0;
         }
+
+        if (i == (int)s.size() - 1) ans = max(ans, temp);
     }
     cout << ans << endl;
-
 }
