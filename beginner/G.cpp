@@ -3,8 +3,6 @@
 using namespace std;
 typedef long long ll;
 const ll INF = 1LL << 60;
-
-
 int n, m;
 const int MAXN = 17;
 vector<vector<pair<ll, ll> > > dist(MAXN, vector<pair<ll, ll> >(MAXN));
