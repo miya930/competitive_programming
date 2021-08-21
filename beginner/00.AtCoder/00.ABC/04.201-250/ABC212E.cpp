@@ -1,43 +1,42 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <string>
 using namespace std;
-typedef vector<vector<int> > Graph;
+typedef long long ll;
 const int mod = 998244353;
-int n, m, k;
-long long ans;
-vector<vector<long long> > dp;          // dp[k][i]Fk“ú–Ú‚É“sŽsi‚É‚¢‚éê‡‚Ì”
 
 int main()
-{   
+{
+    int n, m, k;
     cin >> n >> m >> k;
-    Graph G(n, 1);
-    dp.assign(n, 0);
 
-    for (int i = 0; i < n; ++i) {
+    vector<vector<int> > vec(n);
+    for (int i = 0; i < m; ++i) {
+        int u, v;
+        cin >> u >> v;
+        u--; v--;
+        vec[u].push_back(v);
+        vec[v].push_back(u);
+    }
+    for (int i = 0; i < n; ++i) vec[i].push_back(i);
+
+
+    vector<vector<ll> > dp(k + 1, vector<ll>(n, 0));
+    dp[0][0] = 1;
+
+    for (int i = 0; i < k; ++i) {
+        ll tot = 0;
         for (int j = 0; j < n; ++j) {
-            int u, v;
-            cin >> u >> v;
-            u--; v--;
-            G[u].push_back(v);
-            G[v].push_back(u);
+            tot += dp[i][j];
+            tot %= mod;
+        }
+        for (int j = 0; j < n; ++j) {
+            dp[i + 1][j] += tot;
+            for (auto v : vec[j]) {
+                dp[i + 1][j] -= dp[i][v];
+                dp[i + 1][j] = (dp[i + 1][j] + mod) % mod;
+            }
         }
     }
-
-    // ‰Šú‰»
-    for (int i = 1; i < n; ++i) dp[1][i] = 1;
-
-    for (int i = 1; i <= k; ++i) {
-        long long val1 = 0, val2 = 0;
-
-        for (int j = 0; j < n; ++j) {
-            val1 += dp[i][j];             
-        }
-
-        for (int j = 1; j < n; ++j) {
-            if () 
-        }
-    }
-    
+    cout << dp[k][0] << endl;
 }
