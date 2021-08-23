@@ -57,3 +57,61 @@ int main()
     return 0;
 
 }
+
+
+
+/***
+ * ↓改めて解いた方法
+ */
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using namespace std;
+
+vector<int> enumPrime(int a) {
+    vector<int> res;
+    for (int i = 2; i * i <= a; ++i) {
+        if (a % i != 0) continue;
+        while (a % i == 0) a /= i;
+        res.push_back(i);
+    }
+    if (a != 1) res.push_back(a);
+    return res;
+}
+
+const int MAX_N = 100100;
+vector<bool> isprime(MAX_N, true);
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i) cin >> a[i];
+
+    for (int i = 0; i < n; ++i) {
+        vector<int> vec = enumPrime(a[i]);
+        for (int k = 0; k < vec.size(); ++k) {
+            isprime[vec[k]] = false;
+        }
+    }
+
+    for (int i = 2; i < MAX_N; ++i) {
+        if (isprime[i] == false) {
+            for (int j = i*2; j < MAX_N; j += i) isprime[j] = false;
+        }
+    }
+
+    int cnt = 0;
+    for (int i = 1; i <= m; ++i) {
+        if (isprime[i]) cnt++;
+    }
+    cout << cnt << endl;
+
+    for (int i = 1; i <= m; ++i) {
+        if (isprime[i]) cout << i << endl;
+    }
+    return 0;
+
+}

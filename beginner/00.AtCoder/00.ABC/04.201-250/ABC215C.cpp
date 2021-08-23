@@ -34,3 +34,31 @@ int main()
     return 0;
 
 }
+
+
+
+/***
+ * 別解。
+ * next_permutationはstringなどに使えるので上のような面倒くさいことしなくてよい
+ * 
+ */
+
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string s;
+    int k;
+    cin >> s >> k;
+
+    sort(s.begin(), s.end());
+    vector<string> ans;
+    do {
+        ans.push_back(s);
+    }while(next_permutation(s.begin(), s.end()));
+    cout << ans[k-1] << endl;
+}
