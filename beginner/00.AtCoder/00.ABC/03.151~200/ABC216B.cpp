@@ -1,0 +1,24 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<string> s(n), t(n);
+    for (int i = 0; i < n; ++i) cin >> s[i] >> t[i];
+
+    int ans = 0;
+    for (int i = 0; i < n; ++i) {
+        for (int j = i+1; j < n; ++j) {
+            if (s[i] == s[j] && t[i] == t[j]) ans++;
+        }
+    }
+
+    if (ans) cout << "Yes" << endl;
+    else cout << "No" << endl;
+    
+}
