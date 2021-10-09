@@ -1,15 +1,16 @@
-#include <iostream>
-#include <vector>
+/**
+   created: 09.10.2021 13:23:43
+**/
+#include <bits/stdc++.h>
+
 using namespace std;
+using ll = long long;
 
 int main()
 {
-    int n;
+    ll n;
     cin >> n;
-
-    long long res = 0;
-    for (int i = 0; i < n; ++i) {
-        res += i;
-    }
-    cout << res << endl;
+    
+    cout << n*(n-1)/2 << endl;
+    return 0;
 }
