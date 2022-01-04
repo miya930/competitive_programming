@@ -1,0 +1,18 @@
+要復習リスト
+
+2022.1.4分
+
+・問題解決のためのアルゴリズム×数学
+039
+
+・パナソニックコンテスト2020
+D問題 
+
+・ABC
+ABC125C
+ABC146D
+ARC121B RGB Matching
+ARC118B Village of M People
+CODE FESTIVAL 2017 qual A C-Palindromic Matrix
+ABC193D
+ABC231D Neighbors
