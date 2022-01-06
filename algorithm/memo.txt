@@ -16,3 +16,6 @@ ARC118B Village of M People
 CODE FESTIVAL 2017 qual A C-Palindromic Matrix
 ABC193D
 ABC231D Neighbors
+
+AGC034A.cpp
+AGC043A.cpp
