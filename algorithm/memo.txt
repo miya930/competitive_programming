@@ -19,3 +19,4 @@ ABC231D Neighbors
 
 AGC034A.cpp
 AGC043A.cpp
+C - Strawberry Cakes
