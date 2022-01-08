@@ -1,28 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n;
-string buf = "";
+using ll = long long;
 
-void dfs(int cu) {
-    if (cu == n) {
-        cout << buf << endl;
+int n;
+
+void dfs(string str, char c) {
+    if (str.size() >= n) {
+        cout << str << endl;
         return;
     }
 
-    char biggest = 'a';
-    while(buf.find(biggest) != string::npos) biggest++;
-    
-    for (char c = 'a'; c <= biggest; c++) {
-        buf.push_back(c);
-        dfs(cu + 1);
-        buf.pop_back();
+    for (char ch = 'a'; ch <= c+1; ch++) {
+        char tmp = c;
+        if (ch == c+1) tmp = ch;
+        dfs(str+ch, tmp);    
     }
+
 }
 
 int main()
 {
+    string s;
     cin >> n;
-
-    dfs(0);
+    s = "a";
+    dfs(s, 'a');
     return 0;
 }

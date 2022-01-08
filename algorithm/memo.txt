@@ -5,12 +5,12 @@
 ・問題解決のためのアルゴリズム×数学
 039
 
-・パナソニックコンテスト2020
+・パナソニックコンテスト2020　✓
 D問題 
 
 ・ABC
-ABC125C
-ABC146D
+ABC125C ✓
+ABC146D ✓
 ARC121B RGB Matching
 ARC118B Village of M People
 CODE FESTIVAL 2017 qual A C-Palindromic Matrix
@@ -20,3 +20,14 @@ ABC231D Neighbors
 AGC034A.cpp
 AGC043A.cpp
 C - Strawberry Cakes
+
+
+2022.1.8分
+・ABC
+ABC234E 
+ABC125C C - GCD on Blackboard
+ABC146D
+
+
+・パナソニックコンテスト2020
+D問題 
