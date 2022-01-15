@@ -4,21 +4,15 @@ using Graph = vector<vector<int>>;
 
 vector<bool> seen;
 bool exist = false;
-queue<int> que;
 
-void bfs(const Graph &G, int x) {
-    seen[x] = true;
-    que.push(x);
+void dfs(const Graph &G, int v, int p) {
+    seen[v] = true;
 
-    while(!que.empty()) {
-        int v = que.front();
-        que.pop();
+    for (auto nv : G[v]) {
+        if (p != nv && seen[nv]) exist = true;
+        if (seen[nv]) continue;
 
-        for (auto nv : G[v]) {
-            if (v != nv && seen[nv] == true) exist = true;
-            if (seen[nv]) continue;
-            que.push(nv);
-        }
+        dfs(G, nv, v);
     }
 
     return;
@@ -43,9 +37,8 @@ int main()
     for (int i = 0; i < n; ++i) {
         if (seen[i] == true) continue;
         exist = false;
-        bfs(G, i);
+        dfs(G, i, -1);
         if (!exist) ans++;
-        cout << i << endl;
     }
     
     cout << ans << endl;
