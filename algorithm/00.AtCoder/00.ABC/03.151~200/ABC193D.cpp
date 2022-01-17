@@ -35,3 +35,59 @@ int main()
     printf("%.12f\n", double(win) / tot);
     return 0;
 }
+
+
+/*
+ * 2022.1.16 復習
+ *
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+vector<ll> scard(10, 0), tcard(10, 0);
+
+ll func(ll n) {
+    ll res = 1;
+    for (int i = 0; i < n; ++i) res *= 10;
+    return res;
+}
+
+int main()
+{
+    ll k;
+    cin >> k;
+    string s, t;
+    cin >> s >> t;
+    vector<ll> card(10, k);
+    for (int i = 0; i < 4; ++i) {
+        int nums = s[i] - '0';
+        int numt = t[i] - '0';
+        card[nums]--;
+        card[numt]--;
+        scard[nums]++;
+        tcard[numt]++;
+    }
+
+    ll ans = 0;
+    for (ll i = 1; i <= 9; ++i) {
+        for (ll j = 1; j <= 9; ++j) {
+            vector<ll> stmp = scard, ttmp = tcard;
+            stmp[i]++; ttmp[j]++;
+
+            ll sscore = 0, tscore = 0;
+            for (ll u = 1; u <= 9; ++u) {
+                sscore += (u*func(stmp[u]));
+                tscore += (u*func(ttmp[u])); 
+            }
+            if (sscore > tscore) {
+                ans += (card[i]*(card[j]-(i==j)));
+            }
+        }
+    }
+
+    printf("%.12f\n", (double)ans / (9*k-8) / (9*k-9));
+
+    return 0;
+}
