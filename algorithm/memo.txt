@@ -1,7 +1,5 @@
 要復習リスト
 
-
-
 2022.1.8分
 ■ABC
 ・ABC234E 
@@ -13,7 +11,6 @@
 ・ABC194E
 ・ARC121B
 ・ARC118B
-・ABC192E (解けたけど復習)
 ・ABC193D
 ・CODE FESTIVAL 2017 Final A
 ・AGC043A.cpp 　https://atcoder.jp/contests/agc043/tasks/agc043_a
@@ -30,4 +27,15 @@ https://atcoder.jp/contests/code-festival-2017-quala/tasks/code_festival_2017_qu
 2022.1.16分
 ・ARC115A　　https://atcoder.jp/contests/arc115/tasks/arc115_a
 ・ABC105C
+
+2022.1.22 初回で解けた問題には■
+■ABC176E https://atcoder.jp/contests/abc176/tasks/abc176_e 
+■ABC136D https://atcoder.jp/contests/abc136/tasks/abc136_d
+■ABC157D https://atcoder.jp/contests/abc157/tasks/abc157_d
+・ABC107B  https://atcoder.jp/contests/arc107/tasks/arc107_b
+・ARC074C  https://atcoder.jp/contests/arc074/tasks/arc074_a
+
+■復習用
+・ダイクストラ法
+ABC176E 決まった値の倍数の時間の時にしか出発できない以外は基本的なダイクストラ法のまま。
 

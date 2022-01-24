@@ -1,46 +1,70 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-const int inf = 1001001001;
+using P = pair<ll,int>;
+const ll infl = 1LL<<60;
 
-int dx[] = {0, 1};
-int dy[] = {1, 0};
+struct Edge {
+    int v;
+    ll time;
+    ll start;
+};
+
+template<class T> bool chmin(T &a, T b) {
+    if (a > b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
+priority_queue<P, vector<P>, greater<P>> que;
+vector<ll> dist;
+vector<vector<Edge>> edge;
+
+void dijkstra(int x) {
+    dist[x] = 0LL;
+    que.push({0LL, x});
+
+    while(!que.empty()) {
+        int xx = que.top().second;
+        ll d = que.top().first;
+        que.pop();
+        if (dist[xx] < d) continue;
+
+        for (auto e : edge[xx]) {
+            ll nd = dist[xx] + e.time;
+            if (dist[xx]%e.start != 0) {
+                nd += (e.start - dist[xx]%e.start);
+            }
+            if (chmin(dist[e.v], nd)) {
+                que.push(P(dist[e.v], e.v));
+            }
+        }
+    }
+}
 
 int main()
 {
-    int h, w;
-    cin >> h >> w;
-    vector<string> s(h);
-    for (int i = 0; i < h; ++i) cin >> s[i];
+    int n, m, x, y;
+    cin >> n >> m >> x >> y;
+    x--; y--;
+    edge.resize(n);
+    dist.assign(n, infl);
 
-    vector<vector<pair<int,int>>> vec(h, vector<pair<int,int>>(w, {inf, 0}));
-
-    vec[0][0].first = 0;
-    if (s[0][0] == '#') vec[0][0].first++;
-    queue<pair<int,int>> que;
-    que.push(make_pair(0, 0));
-
-    while(!que.empty()) {
-        int vx = que.front().first;
-        int vy = que.front().second;
-        que.pop();
-
-        for (int i = 0; i < 2; ++i) {
-            int nx = vx + dx[i];
-            int ny = vy + dy[i];
-
-            int tmp = vec[vx][vy].first;
-            if (nx >= h || ny >= w) continue;
-            if (s[nx][ny] == '#' && s[vx][vy] == '.') tmp++;
-
-            if (vec[nx][ny].first == inf || tmp < vec[nx][ny].first) {
-                vec[nx][ny].first = tmp;
-            } else continue;
-
-            que.push(make_pair(nx, ny));
-        }
+    for(int i = 0; i < m; ++i) {
+        int a, b;
+        ll t, k;
+        cin >> a >> b >> t >> k;
+        a--; b--;
+        edge[a].push_back(Edge{b, t, k});
+        edge[b].push_back(Edge{a, t, k});
     }
 
-    cout << vec[h-1][w-1].first << endl;
+    dijkstra(x);
+
+    if (dist[y] != infl) cout << dist[y] << endl;
+    else cout << -1 << endl;
+
     return 0;
 }
