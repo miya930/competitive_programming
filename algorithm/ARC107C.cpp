@@ -42,7 +42,7 @@ int main()
 {
     int n, k;
     cin >> n >> k;
-    UnionFind uf1, uf2;
+    UnioWnFind uf1, uf2;
     uf1.init(n); uf2.init(n);
 
     vector<vector<int>> a(n, vector<int>(n));
