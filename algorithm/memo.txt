@@ -44,4 +44,11 @@ ABC176E 決まった値の倍数の時間の時にしか出発できない以外
 ・AGC003B https://atcoder.jp/contests/agc003/tasks/agc003
 ・ABC096D https://atcoder.jp/contests/abc096/tasks/abc096_d
 
-
+■2022.2.20
+・ABC179D https://atcoder.jp/contests/abc179/tasks/abc179_d
+・ABC240D https://atcoder.jp/contests/abc240/tasks/abc240_d
+・ARC134B https://atcoder.jp/contests/arc134/tasks/arc134_b
+・AGC035B https://atcoder.jp/contests/agc035/tasks/agc035_a
+・ARC110B https://atcoder.jp/contests/arc110/tasks/arc110_b
+・AGC024B https://atcoder.jp/contests/agc024/tasks/agc024_b
+・エイジング2019 C https://atcoder.jp/contests/aising2019/tasks/aising2019_c
