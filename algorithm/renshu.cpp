@@ -1,32 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-
+const ll mod = 10;
+ 
+template <class T> T modpow(T n, T m, T mo) {
+    T res = 1;
+    while(m > 0) {
+        if (m & 1) {
+            res = res * n;
+            if (res != mo) res %= mo;
+        }
+        m >>= 1;
+        n *= n;
+        n %= mo;
+    }
+    return res;
+}
+ 
 int main()
 {
-    int n;
-    string s;
-    cin >> n >> s;
-
-    vector<int> cnt(26, 0);
-    for (int i = 0 ;i < n; ++i) cnt[s[i] - 'a']++;
-
-    int l = 0, r = n-1;
-    while(r-l>0) {
-        int x = s[l] - 'a'; 
-        for (int i = 0; i < x; ++i) {
-            if (!cnt[i]) continue;
-            while(l < r && s[r] - 'a' != i) {
-                cnt[s[r] - 'a']--;
-                r--;
-            }
-            swap(s[l], s[r]);
-            cnt[i]--;
-            r--;
-            break;
-        }
-        l++;
+    ll a, b, c;
+    cin >> a >> b >> c;
+ 
+    ll aa = a, cnta = 0;
+    while (1) {
+        aa = aa * a % mod;
+        cnta++;
+        if ((aa%mod) == (a%mod)) break;
     }
-
+ 
+    ll res = modpow(b, c, cnta);
+    ll ans = 1;
+    for (int i = 0; i < res+cnta; ++i) ans = ans * a%mod;
+    cout << ans%mod << endl;
+ 
     return 0;
 }
