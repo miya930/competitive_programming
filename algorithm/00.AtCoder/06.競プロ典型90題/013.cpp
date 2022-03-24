@@ -61,11 +61,11 @@ int main()
         G[b].push_back(Edge(a, c));
     }
 
-    // “_0 ‚©‚çk‚Ü‚Å‚Ì‹——£
+    // ï¿½_0 ï¿½ï¿½ï¿½ï¿½kï¿½Ü‚Å‚Ì‹ï¿½ï¿½ï¿½
     dy(G, 0);
     for (int i = 0; i < n; ++i) vec_to_k[i] = dist[i];
 
-    // k‚©‚ç“_N‚Ü‚Å‚Ì‹——£‚ÌŒvŽZ
+    // kï¿½ï¿½ï¿½ï¿½_Nï¿½Ü‚Å‚Ì‹ï¿½ï¿½ï¿½ï¿½ÌŒvï¿½Z
     dy(G, n - 1);
     for (int i = 0; i < n; ++i) vec_from_k[i] = dist[i];
 
@@ -73,4 +73,78 @@ int main()
         cout << vec_to_k[i] + vec_from_k[i] << endl;
     }
 
+}
+
+
+
+/*** 2022.3.13 å¾©ç¿’ ***/
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using P = pair<ll,int>;
+const ll infl = 1LL << 60;
+
+struct Edge {
+    int to;
+    ll w;
+};
+
+template<class T> bool chmin(T &a, T b) {
+    if (a > b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+
+using Graph = vector<vector<Edge>>;
+priority_queue<P, vector<P>, greater<P>> que;
+vector<ll> dist;
+
+void dijkstra(const Graph &G, int x) {
+    dist[x] = 0LL;
+    que.push(P(0LL, x));
+
+    while(!que.empty()) {
+        int v = que.top().second;
+        ll  d = que.top().first;
+        que.pop();
+
+        if (d > dist[v]) continue;
+
+        for (auto e : G[v]) {
+            if (chmin(dist[e.to], d + e.w)) {
+                que.push(P(dist[e.to], e.to));
+            }
+        }
+    }
+}
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    Graph G(n);
+    dist.assign(n, infl);
+
+    for (int i = 0; i < m; ++i) {
+        int a, b;
+        ll c;
+        cin >> a >> b >> c;
+        a--; b--;
+        G[a].push_back(Edge{b, c});
+        G[b].push_back(Edge{a, c});
+    }
+
+    vector<ll> ans(n, 0);
+    dijkstra(G, 0);
+    for (int i = 0; i < n; ++i) ans[i] += dist[i];
+    dist.assign(n, infl);
+    dijkstra(G, n-1);
+    for (int i = 0; i < n; ++i) ans[i] += dist[i];
+
+    for (int i = 0; i < n; ++i) cout << ans[i] << endl;
+
+    return 0;
 }

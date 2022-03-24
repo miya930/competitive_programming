@@ -51,3 +51,52 @@ int main()
     }
     cout << endl;
 }
+
+
+/*** 2022.3.13 復習 ***/
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using Graph = vector<vector<int>>;
+vector<int> color;
+
+void dfs(const Graph &G, int v, int c) {
+    color[v] = c;
+
+    for (auto nv : G[v]) {
+        if (color[nv] != -1) continue;
+        dfs(G, nv, 3-c);
+    }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    color.assign(n, -1);
+    Graph G(n);
+    for (int i = 0; i < n-1; ++i) {
+        int a, b;
+        cin >> a >> b;
+        a--; b--;
+        G[a].push_back(b);
+        G[b].push_back(a);
+    }
+
+    dfs(G, 0, 1);
+    vector<int> ans1, ans2;
+    for (int i = 0; i < n; ++i) {
+        if (color[i] == 1) ans1.push_back(i);
+        if (color[i] == 2) ans2.push_back(i);
+    }
+    
+    if (ans1.size() > ans2.size()) {
+        for (int i = 0; i < min(n/2, (int)ans1.size()); ++i) cout << ans1[i]+1 << " ";
+        cout << endl;
+    } else {
+        for (int i = 0; i < min(n/2,(int)ans2.size()); ++i) cout << ans2[i]+1 << " ";
+    }
+
+    return 0;
+}

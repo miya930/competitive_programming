@@ -19,3 +19,30 @@ int main(void)
     }
     cout << ans << endl;
 }
+
+/*** 2022.3.13 復習 ***/
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const ll infl = 1LL << 60;
+
+int main()
+{
+    ll n, a, b, c;
+    cin >> n >> a >> b >> c;
+
+    ll ans = infl;
+    for (int i = 0; i <= 9999; ++i) {
+        for (int j = 0; j <= 9999-i; ++j) {
+            ll tmp = n - i*a - j*b;
+            ll cnt = i + j;
+            if (tmp%c != 0 || tmp < 0) continue;
+            cnt += tmp/c;
+            ans = min(ans, cnt);
+        }
+    }
+
+    cout << ans << endl;
+    return 0;
+}

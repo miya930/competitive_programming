@@ -1,6 +1,6 @@
 /**
- * ‹£ƒvƒ“TŒ^90–â
- * 028 - Clutterd Paper (š4)
+ * ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Tï¿½^90ï¿½ï¿½
+ * 028 - Clutterd Paper (ï¿½ï¿½4)
  * link : https://atcoder.jp/contests/typical90/tasks/typical90_ab
  * 
  */
@@ -26,14 +26,14 @@ int main()
         tile[ry][rx]++;
     }
 
-    // ‰¡•ûŒü‚Ì—İÏ˜a
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì—İÏ˜a
     for (int y = 0; y <= MAX; ++y) {
         for (int x = 1; x <= MAX; ++x) {
             tile[y][x] += tile[y][x-1];
         }
     }
 
-    // c•ûŒü‚Ì—İÏ˜a
+    // ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½Ì—İÏ˜a
     for (int y = 1; y <= MAX; ++y) {
         for (int x = 0; x <= MAX; ++x) {
             tile[y][x] += tile[y-1][x];
@@ -48,4 +48,52 @@ int main()
     }
     
     for (int k = 1; k <= n; ++k) cout << mp[k] << endl;
+}
+
+/*** 2022.3.13 ***/
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int field[1020][1020];
+vector<int> ans(100100);
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<pair<int,int>> lpa(n), rpa(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> lpa[i].first >> lpa[i].second >> rpa[i].first >> rpa[i].second;
+    }
+
+    for (int i = 0; i < n; ++i) {
+        field[lpa[i].first][lpa[i].second]++;
+        field[lpa[i].first][rpa[i].second]--;
+        field[rpa[i].first][lpa[i].second]--;
+        field[rpa[i].first][rpa[i].second]++;
+    }
+
+    for (int i = 1; i < 1000; ++i) {
+        for (int j = 0; j < 1000; ++j) {
+            field[i][j] += field[i-1][j];
+        }
+    }
+
+    for (int i = 0; i < 1000; ++i) {
+        for (int j = 1; j < 1000; ++j) {
+            field[i][j] += field[i][j-1];
+        }
+    }
+
+    for (int i = 0; i < 1000; ++i) {
+        for (int j = 0; j < 1000; ++j) {
+            ans[field[i][j]]++;
+        }
+    }
+
+    for (int i = 1; i <= n; ++i) cout << ans[i] << endl;
+
+    return 0;
 }

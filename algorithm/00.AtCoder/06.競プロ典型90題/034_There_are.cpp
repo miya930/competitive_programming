@@ -33,3 +33,40 @@ int main()
     }
     cout << res << endl;
 }
+
+
+/* 2022.3.20 復習 */
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main()
+{
+    int n, k;
+    cin >>n >> k;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i) cin >> a[i];
+
+    int r = 0;
+    int cnt = 0;
+    int ans = 0;
+    map<int,int> mp;
+    for (int l = 0; l < n; ++l) {
+        while(r < n && cnt <= k) {
+            if (mp[a[r]] == 0) {
+                if (cnt == k) break;
+                cnt++;
+            } 
+            mp[a[r]]++;
+            r++;
+        }
+        ans = max(ans, r-l);
+        if (r == l) r++;
+        mp[a[l]]--;    
+        if (mp[a[l]] == 0) cnt--;
+    }
+
+    cout << ans << endl;
+    return 0;
+}
+

@@ -60,4 +60,19 @@ ABC176E 決まった値の倍数の時間の時にしか出発できない以外
 
 ■2022.3.12
 ・ABC243E https://atcoder.jp/contests/abc243/tasks/abc243_e
+・競プロ典型 https://atcoder.jp/contests/typical90/tasks/typical90_f
+・競プロ典型 https://atcoder.jp/contests/typical90/tasks/typical90_h
+・競プロ典型 https://atcoder.jp/contests/typical90/tasks/typical90_u
+・競プロ典型 https://atcoder.jp/contests/typical90/tasks/typical90_u
 
+・ABC103D https://atcoder.jp/contests/abc103/tasks/abc103_d
+
+
+■2022.3.20
+・ACL Beginner Contest https://atcoder.jp/contests/abl/tasks/abl_d
+・ABC183E https://atcoder.jp/contests/abc183/tasks/abc183_e
+・ABC244F https://atcoder.jp/contests/abc244/tasks/abc244_f
+・ABC137D https://atcoder.jp/contests/abc137
+
+セグメント木の練習問題
+・ACL Beginner Contest https://atcoder.jp/contests/abl/tasks/abl_d
