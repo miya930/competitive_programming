@@ -1,0 +1,8 @@
+
+【ベルマンフォード法】
+・ABC073D https://atcoder.jp/contests/abc073/tasks/abc073_d
+  next_permutationを使用して解く。素直な感じの問題。
+
+【逆元, nCr】
+・ABC151E https://atcoder.jp/contests/abc151/tasks/abc151_e
+　クエリ高速化したnCrの求め方 (拡張ユークリッド互除法を使用)

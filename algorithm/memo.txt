@@ -69,13 +69,14 @@ ABC176E 決まった値の倍数の時間の時にしか出発できない以外
 
 
 ■2022.3.20
-・ACL Beginner Contest https://atcoder.jp/contests/abl/tasks/abl_d
+・ACL Beginner Contest https://atcoder.jp/contests/abl/tasks/abl_d　✓
 ・ABC183E https://atcoder.jp/contests/abc183/tasks/abc183_e
 ・ABC244F https://atcoder.jp/contests/abc244/tasks/abc244_f
 ・ABC137D https://atcoder.jp/contests/abc137
 
 セグメント木の練習問題
-・ACL Beginner Contest https://atcoder.jp/contests/abl/tasks/abl_d
+・ACL Beginner Contest https://atcoder.jp/contests/abl/tasks/abl_d ✓
+　LISもあわせて勉強する
 
 ■3/26
 ・ABC245F https://atcoder.jp/contests/abc245/tasks/abc245_f
@@ -83,3 +84,20 @@ ABC176E 決まった値の倍数の時間の時にしか出発できない以外
 ・ABC180E https://atcoder.jp/contests/abc180/tasks/abc180_e
 ・ABC201D https://atcoder.jp/contests/abc201/tasks/abc201_d
 
+■3/30
+・ABC138E https://atcoder.jp/contests/abc138/tasks/abc138_e
+・ABC191E https://atcoder.jp/contests/abc191/tasks/abc191_e
+・ABC100D https://atcoder.jp/contests/abc100/tasks/abc100_d
+・ARC111B https://atcoder.jp/contests/arc111/tasks/arc111_b
+
+
+■4/2
+・ABC246D https://atcoder.jp/contests/abc246/tasks/abc246_d
+・ABC119C https://atcoder.jp/contests/abc119/tasks/abc119_c
+・ABC126E https://atcoder.jp/contests/abc126/tasks/abc126_e
+・ABC073D https://atcoder.jp/contests/abc073/tasks/abc073_d
+・ABC099D https://atcoder.jp/contests/abc099/tasks/abc099_d
+・ABC151E https://atcoder.jp/contests/abc151/tasks/abc151_e
+
+
+DPや全探索を配列で実装しにくいときは再帰関数を使用する
