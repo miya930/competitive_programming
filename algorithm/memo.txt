@@ -99,5 +99,11 @@ ABC176E 決まった値の倍数の時間の時にしか出発できない以外
 ・ABC099D https://atcoder.jp/contests/abc099/tasks/abc099_d
 ・ABC151E https://atcoder.jp/contests/abc151/tasks/abc151_e
 
-
 DPや全探索を配列で実装しにくいときは再帰関数を使用する
+
+■4/10
+・ABC138A https://atcoder.jp/contests/arc138/tasks/arc138_a
+・競技プログラミング典型90 https://atcoder.jp/contests/typical90/tasks/typical90_ap
+・ABC247E https://atcoder.jp/contests/abc247/tasks/abc247_e
+　すらすら実装できるようにするため
+・ABC247F https://atcoder.jp/contests/abc247/tasks/abc247_f

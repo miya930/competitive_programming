@@ -1,7 +1,7 @@
 /**
  * 
- * ‹£ƒvƒ“TŒ^90–â
- * 042 - Multiple of 9 (š4)
+ * ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Tï¿½^90ï¿½ï¿½
+ * 042 - Multiple of 9 (ï¿½ï¿½4)
  * link : https://atcoder.jp/contests/typical90/tasks/typical90_ap
  * 
  */
@@ -30,4 +30,33 @@ int main()
         cout << 0 << endl;
     }
 
+}
+
+/* 2022.4.10 å¾©ç¿’ */
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int mod = 1000000007;
+
+int n = 100100;
+vector<int> dp(n+1);
+
+int main()
+{
+    int k;
+    cin >> k;
+    
+    for (int i = 1; i < 10; ++i) dp[i] = 1;
+
+    for (int i = 1; i < k; ++i) {
+        for (int j = 1; j < 10; j++) {
+            if (i+j <= k) dp[i+j] += dp[i];
+            dp[i+j] %= mod;
+        }
+    }
+
+    if (k%9 == 0) cout << dp[k] << endl;
+    else cout << 0 << endl;
+    return 0;
 }

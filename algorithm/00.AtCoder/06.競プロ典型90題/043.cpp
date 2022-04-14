@@ -64,3 +64,82 @@ int main()
 
 
 }
+
+
+/* 2022.4.10復習 */
+
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ppi = pair<pair<int,int>,int>;
+const int inf = 1001001001;
+
+int dx[] = {1, 0, -1, 0};
+int dy[] = {0, 1, 0, -1};
+int h, w;
+
+int cnt[1010][1010][4];
+bool seen[1010][1010][4];
+deque<ppi> dq;
+vector<string> s;
+
+void bfs(int x, int y) {
+
+    for (int i = 0; i < 4; ++i) {
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        if (nx < 0 || nx >= h || ny < 0 || ny >= w || s[nx][ny] == '#') continue;
+        dq.push_back({{nx, ny}, i});
+        cnt[nx][ny][i] = 0;
+    }
+
+    while(!dq.empty()) {
+        int vx = dq.front().first.first;
+        int vy = dq.front().first.second;
+        int dir = dq.front().second;
+        dq.pop_front();
+
+        if (seen[vx][vy][dir]) continue;
+        seen[vx][vy][dir] = true;
+        
+        for (int i = 0; i < 4; ++i) {
+            int nx = vx + dx[i];
+            int ny = vy + dy[i];
+            if (nx < 0 || nx >= h || ny < 0 || ny >= w || s[nx][ny] == '#') continue;
+
+            int p = cnt[vx][vy][dir];
+            if (dir != i) p++;
+
+                cnt[nx][ny][i] = p;
+                if (dir == i) dq.push_front({{nx,ny}, i});
+                else dq.push_back({{nx,ny}, i});
+            }
+        }
+    }
+}
+
+int main()
+{
+    int rs, rt, cs, ct;
+    cin >> h >> w >> rs >> cs >> rt >> ct;
+    rs--; cs--; rt--; ct--;
+
+    s.resize(h);
+    for (int i = 0; i < h; ++i) cin >> s[i];
+    for (int i = 0; i < h; ++i) {
+        for (int j = 0; j < w; ++j) {
+            for (int l = 0; l < 4; ++l) {
+                cnt[i][j][l] = inf;
+            }
+        }
+    }
+
+    bfs(rs, cs);
+
+    int ans = inf;
+    for (int i = 0; i < 4; ++i) ans = min(ans, cnt[rt][ct][i]);
+
+    cout << ans << endl;
+    return 0;
+}

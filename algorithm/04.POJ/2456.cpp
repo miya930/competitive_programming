@@ -1,39 +1,42 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
 using namespace std;
-const int INF = 1000000007;
+typedef long long ll;
+const int inf = 1001001001;
 
-bool check(int m, int mid, vector<int> x) {
-    int temp = 1;
-    int prev = 0;
-    for (int i = 1; i < (int)x.size(); ++i) {
-        if (x[i] - x[prev] >= mid) {
-            temp++;
-            prev = i;
+int n, m;
+vector<int> x;
+
+bool check(int key) {
+    int cnt = 1;
+    int pre = x[0];
+    for (int i = 1; i < n; ++i) {
+        int t = x[i] - pre;
+        if (t >= key) {
+            pre = x[i];
+            cnt++;
         }
     }
-    if (temp >= m) return true;
+    if (cnt >= m) return true;
     else return false;
 }
 
 int main()
 {
-    int n, m;
+    
     cin >> n >> m;
-    vector<int> x(n), dist(n);
+    x.resize(n);
     for (int i = 0; i < n; ++i) cin >> x[i];
-
     sort(x.begin(), x.end());
 
-    int right = INF;
-    int left = 0;
-
-    while(right - left > 1) {
-        int mid = (right + left) / 2;
-        if (check(m, mid, x)) left = mid;
-        else right = mid;
+    int l = 0, r = inf;
+    while(r-l>1) {
+        int mid = (r+l)/2;
+        if (check(mid)) l = mid;
+        else r = mid;
     }
-    
-    cout << left << endl;
+
+    cout << l << endl;
+    return 0;
 }

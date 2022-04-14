@@ -1,6 +1,6 @@
 /**
   * 
-  * ‹£ƒvƒ“TŒ^90–â
+  * ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Tï¿½^90ï¿½ï¿½
   * 048 - I will not drop out
   * link : https://atcoder.jp/contests/typical90/tasks/typical90_av
   * 
@@ -28,4 +28,29 @@ int main()
     ll ans = 0;
     for (int i = 0; i < k; ++i) ans += c[i];
     cout << ans << endl;
+}
+
+
+/* 2022.4.10 å¾©ç¿’ */
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main()
+{
+    int n, k;
+    cin >> n >> k;
+    vector<ll> a(n), b(n), vec;
+    for (int i = 0; i < n; ++i) cin >> a[i] >> b[i];
+
+    for (int i = 0; i < n; ++i) {
+        vec.push_back(a[i]-b[i]);
+        vec.push_back(b[i]);
+    }
+    sort(vec.rbegin(), vec.rend());
+    ll ans = 0;
+    for (int i = 0; i < k; ++i) ans += vec[i];
+
+    cout << ans << endl;
+    return 0;
 }

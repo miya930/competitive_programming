@@ -1,5 +1,5 @@
 /**
- * 046  - I Love 46 (Åö3)
+ * 046  - I Love 46 (ÔøΩÔøΩ3)
  * https://atcoder.jp/contests/typical90/tasks/typical90_at
  * 
  */
@@ -38,4 +38,42 @@ int main()
         }
     }
     cout << ans << endl;
+}
+
+
+/* 2022.4.10 Âæ©Áøí */
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> a(n), b(n), c(n);
+    map<int,int> mpa, mpb, mpc;
+    for (int i = 0; i < n; ++i) cin >> a[i];
+    for (int i = 0; i < n; ++i) cin >> b[i];
+    for (int i = 0; i < n; ++i) cin >> c[i];
+
+    for (int i = 0; i < n; ++i) {
+        mpa[a[i]%46]++;
+        mpb[b[i]%46]++;
+        mpc[c[i]%46]++;
+    }
+
+    ll ans = 0;
+    for (int i = 0; i < 46; ++i) {
+        for (int j = 0; j < 46; ++j) {
+            for (int k = 0; k < 46; ++k) {
+                if ((i+j+k)%46 != 0) continue;
+                ll t1 = mpa[i], t2 = mpb[j], t3 = mpc[k];
+                ans += t1*t2*t3;
+            }
+        }
+    }
+
+    cout << ans << endl;
+    return 0;
 }
