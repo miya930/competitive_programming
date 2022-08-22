@@ -1,52 +1,46 @@
-# include <opencv2/opencv.hpp>
-# include <opencv2/highgui.hpp>
-# include <opencv2/videoio.hpp>
-#include <Windows.h>
-
-int main(int argc, char * const argv[]){
-  // モニターサイズ取得
-  HWND desktop = GetDesktopWindow();
-  RECT rect;
-  GetWindowRect(desktop, &rect);
-
-
-  // DIBの情報を設定する
-  BITMAPINFO bmpInfo;
-  bmpInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-  bmpInfo.bmiHeader.biWidth = rect.right;
-  bmpInfo.bmiHeader.biHeight = -rect.bottom;
-  bmpInfo.bmiHeader.biPlanes = 1;
-  bmpInfo.bmiHeader.biBitCount = 24; //cv::Matの画像をアルファチャンネル有りにする場合はは32;
-  bmpInfo.bmiHeader.biCompression = BI_RGB;
-
-
-  LPDWORD lpPixel;
-  HDC hDC = GetDC(desktop);
-  HBITMAP hBitmap = CreateDIBSection(hDC, &bmpInfo, DIB_RGB_COLORS, (void**)&lpPixel, NULL, 0);
-  HDC hMemDC = CreateCompatibleDC(hDC);
-  SelectObject(hMemDC, hBitmap);
-
-  cv::Mat monitor_img;
-  monitor_img.create(rect.bottom, rect.right, CV_8UC3); //RGBのみ。アルファちゃんねるを加えるにはCV_8UN4
-  
-  // 画像表示用のWindowを作成（ウィンドウの大きさを640x480に固定する）
-  cv::namedWindow("Screenshot", cv::WINDOW_NORMAL);
-  cv::resizeWindow("Screenshot", 640, 480);
-
-  while (true){
-    //hDCの画像（スクリーンショット）をhMemDCにコピーする
-    BitBlt(hMemDC, 0, 0, rect.right, rect.bottom, hDC, 0, 0, SRCCOPY);
-    // hMemDCの内容をcv::Matの画像（monitor_img）にコピー
-    GetDIBits(hMemDC, hBitmap, 0, rect.bottom, monitor_img.data, (BITMAPINFO *)&bmpInfo, DIB_RGB_COLORS);  //copy from hwindowCompatibleDC to hbwindow
-
-    cv::imshow("Screenshot", monitor_img); // スクリーンショットの表示    
-    if (cv::waitKey(1) == 27) break; //Escキーで終了
-  }
-
-  //メモリ開放
-  ReleaseDC(desktop, hDC);
-  DeleteDC(hMemDC);
-  DeleteObject(hBitmap);
-
-  return 0;
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+ 
+int main()
+{
+    ll n, k;
+    cin >> n >> k;
+    vector<ll> a(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> a[i];
+        a[i]--;
+    }
+ 
+    vector<int> visited(n, 0), vec, start, cycle;
+    int now = 0;
+    vec.push_back(now);
+ 
+    while(1) {
+        visited[now]++;
+        if (visited[now] > 2) break;
+        vec.push_back(a[now]);
+        now = a[now];
+    }
+ 
+    for (int i = 0; i < n; ++i) {
+        if (visited[vec[i]] == 1) start.push_back(vec[i]);
+        else break;
+    }
+ 
+    int si = start.size();
+    int vesi = vec.size();
+ 
+    for (int i = si; i < si + (vesi-1-si)/2; ++i) {
+        cycle.push_back(vec[i]);
+    }
+ 
+    if (k < si) cout << start[k]+1 << endl;
+    else {
+        k -= si;
+        k %= (ll)cycle.size();
+        cout << cycle[k%cycle.size()]+1 << endl;
+    }
+ 
+    return 0;
 }
