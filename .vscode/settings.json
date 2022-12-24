@@ -89,7 +89,8 @@
         "shared_mutex": "cpp",
         "sstream": "cpp",
         "thread": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "bit": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
