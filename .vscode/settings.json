@@ -90,7 +90,10 @@
         "sstream": "cpp",
         "thread": "cpp",
         "typeindex": "cpp",
-        "bit": "cpp"
+        "bit": "cpp",
+        "filesystem": "cpp",
+        "format": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.dimInactiveRegions": false
 }
