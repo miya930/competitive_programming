@@ -92,7 +92,11 @@
         "typeindex": "cpp",
         "bit": "cpp",
         "filesystem": "cpp",
-        "format": "cpp"
+        "format": "cpp",
+        "locale": "cpp",
+        "stop_token": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "C_Cpp.dimInactiveRegions": false
