@@ -99,5 +99,11 @@
         "xlocmes": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
-    "C_Cpp.dimInactiveRegions": false
+    "C_Cpp.dimInactiveRegions": false,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "jbenden.c-cpp-flylint",
+    "editor.formatOnSaveMode": "file",
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    }
 }

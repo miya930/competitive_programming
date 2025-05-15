@@ -67,3 +67,33 @@ int main()
 
     return 0;
 }
+
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int n;
+
+void func(string s, int val) {
+    if (s.size() == n) {
+        if (val == 0) cout << s << endl;
+        return;
+    }
+
+    string str1 = s + "(";
+    string str2 = s + ")";
+
+    if (val + 1 <= 10) func(str1, val + 1);
+    if (val - 1 >= 0) func(str2, val - 1);
+
+}
+
+int main()
+{
+    cin >> n;
+    string s = "";
+    func(s, 0);
+
+    return 0;
+}

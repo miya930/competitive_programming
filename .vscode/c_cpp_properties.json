@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "c:/bits"
+                "c:/bits",
+                "C:/Users/junya/Documents/00_programming/200_git_repository/competitive_programming/algorithm"
             ],
             "defines": [
                 "_DEBUG",

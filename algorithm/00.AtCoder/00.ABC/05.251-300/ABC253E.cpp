@@ -7,40 +7,29 @@ int main()
 {
     int n, m, k;
     cin >> n >> m >> k;
+    vector<vector<ll>> dp(n+1, vector<ll>(m+10));
+    vector<vector<ll>> sum(n+1, vector<ll>(m+10));
 
-    vector<vector<int>> dp(n+1, vector<int>(m+100, 0));
-    vector<ll> sum(m+100);
-    for (int i = 1; i <= m; ++i) dp[0][i] = 1;
-    for (int i = 1; i <= m; ++i) sum[i+1] = sum[i] + dp[0][i];
-
-    for (int i = 1; i < n; ++i) {
-        for (int j = 1; j <= m; ++j) {
-            ll lo = j-k+1;
-            ll up = j+k;
-            if (lo < 1) lo = 1;
-            if (up > m+1) up = m+1; 
-            ll tmp = sum[up] - sum[lo];
-
-            ll al = (sum[m+1] - sum[1] - tmp + mod)%mod;
-
-            dp[i][j] += al;
-            dp[i][j] %= mod;
-        }
-
-        sum[1] = 0;
-        for (int j = 1; j <= m; ++j) {
-            sum[i+1] = sum[i] + dp[i][j];
-            sum[i+1] %= mod;
-        }
+    for (int i = 1; i <= m; i++) {
+        dp[1][i] = 1;
+        sum[1][i] = sum[1][i-1] + 1;
     }
 
+    for (int i = 2; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            ll l = max(1, j-k+1);
+            ll r = min(m, j+k-1);
+            ll dif = sum[i-1][r] - sum[i-1][l-1];
+            if (l > r) dif = 0;
+            dp[i][j] = (sum[i-1][m] - dif + mod) % mod;
+            sum[i][j] = (sum[i][j-1] + dp[i][j]) % mod;
+        }
+    }
     ll ans = 0;
-    
-    for (int i = 1; i <= m; ++i) {
-        ans += dp[n-1][i];
+    for (int i = 1; i <= m; i++) {
+        ans += dp[n][i];
         ans %= mod;
     }
-
     cout << ans << endl;
     return 0;
 }
